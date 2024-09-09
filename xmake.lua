@@ -4,12 +4,39 @@ add_packages("cosmocc")
 set_toolchains("@cosmocc")
 
 add_includedirs("./jsoncpp/dist")
+add_includedirs("./cryptopp")
 
 
 
 target("ZIT_NetworkAutoConnector.com")
+
+    before_build(function (target) 
+        --compile libs
+        -- local cosmocxx=path.join(target:pkg("cosmocc"):installdir(),"bin","cosmoc++")
+        local cosmocxx_x64=path.join(target:pkg("cosmocc"):installdir(),"bin","x86_64-unknown-cosmo-c++")
+        local cosmocxx_a64=path.join(target:pkg("cosmocc"):installdir(),"bin","aarch64-unknown-cosmo-c++")
+        local apelink=path.join(target:pkg("cosmocc"):installdir(),"bin","apelink")
+        os.execv("./compile_cryptopp.sh", {cosmocxx_x64,"amd64"},{shell=true})
+        os.execv("./compile_cryptopp.sh", {cosmocxx_a64,"arm64"},{shell=true})
+
+
+    end)
+
+
+
     set_kind("binary")
-    add_files("main.cpp","utf8string_handle.cpp","jsoncpp/dist/jsoncpp.cpp")
+    add_files("**.cpp","jsoncpp/dist/jsoncpp.cpp")
+    -- add_files("**.cpp","jsoncpp/dist/jsoncpp.cpp","cryptopp/build/libcryptopp.a")
+
+
+
+
+
+-- target("botan")
+--     set_kind("static")
+
+
+
 
 --
 -- If you want to known more usage about xmake, please see https://xmake.io

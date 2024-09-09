@@ -1,9 +1,14 @@
 # Xmake cache
 .xmake/
 build/
-
+.cache
 # MacOS Cache
 .DS_Store
 
 
 .vscode/compile_commands.json
+
+cryptopp/a.out.aarch64.elf
+cryptopp/a.out.com.dbg
+cryptopp/a.out.com.dbg
+cryptopp/cryptest.exe.dbg
