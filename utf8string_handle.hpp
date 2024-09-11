@@ -7,18 +7,11 @@
 #include <string>
 #include <vector>
 
-namespace io_github_pumpkinxd_ZitNetworkAutoConnector {
+namespace io_github_pumpkinxd_ZitNetworkAutoConnector
+{
 
 std::vector<std::string> splitString(const std::string &in);
-std::string extractQueryString(const std::string& url);
+std::string extractQueryString(const std::string &url);
 } // namespace io_github_pumpkinxd_ZitNetworkAutoConnector
-
-
-
-
-
-
-
-
 
 #endif /* UTF8STRING_HANDLE */

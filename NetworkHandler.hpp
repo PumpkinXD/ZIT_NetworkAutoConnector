@@ -1,35 +1,29 @@
 #ifndef NETWORKHANDLER
 #define NETWORKHANDLER
 
-
-
-#include <sys/socket.h>
 #include <arpa/inet.h>
-#include <unistd.h>
-#include <sys/wait.h>
-#include <sys/time.h>
-#include <netinet/in.h>
-#include <sys/types.h>
-
-#include <fcntl.h>
-#include <netdb.h>
-
-#include <ctime>
 #include <cerrno>
 #include <csignal>
 #include <cstdlib>
 #include <cstring>
-#include <thread>
+#include <ctime>
+#include <fcntl.h>
+#include <netdb.h>
+#include <netinet/in.h>
 #include <string>
+#include <sys/socket.h>
+#include <sys/time.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <thread>
+#include <unistd.h>
 #include <vector>
 // #include <pthread.h>
 
+namespace io_github_pumpkinxd_ZitNetworkAutoConnector
+{
 
-
-namespace io_github_pumpkinxd_ZitNetworkAutoConnector {
-
-std::string http_get(const std::string &hostname,
-                     const std::string content = "");
+std::string http_get(const std::string &hostname, const std::string &content);
 }
 
 #endif /* NETWORKHANDLER */
