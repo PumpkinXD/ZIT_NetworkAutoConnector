@@ -11,14 +11,22 @@ add_includedirs("./cryptopp")
 target("ZIT_NetworkAutoConnector.com")
 
     before_build(function (target) 
+
+
         --compile libs
-        -- local cosmocxx=path.join(target:pkg("cosmocc"):installdir(),"bin","cosmoc++")
+        local cosmocxx=path.join(target:pkg("cosmocc"):installdir(),"bin","cosmoc++")
         local cosmocxx_x64=path.join(target:pkg("cosmocc"):installdir(),"bin","x86_64-unknown-cosmo-c++")
         local cosmocxx_a64=path.join(target:pkg("cosmocc"):installdir(),"bin","aarch64-unknown-cosmo-c++")
         local apelink=path.join(target:pkg("cosmocc"):installdir(),"bin","apelink")
+
+
+        --TODO:compile or amalgamate jsoncpp here
+
+
+        --compile cryptopp for cosmo libc
         os.execv("./compile_cryptopp.sh", {cosmocxx_x64,"amd64"},{shell=true})
         os.execv("./compile_cryptopp.sh", {cosmocxx_a64,"arm64"},{shell=true})
-
+        os.execv(apelink,{"-o","./cryptopp/build/libcryptopp.a","./cryptopp/build/amd64/libcryptopp.a","./cryptopp/build/arm64/libcryptopp.a"},{shell=true})
 
     end)
 
