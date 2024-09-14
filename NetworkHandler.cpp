@@ -14,7 +14,9 @@ std::string io_github_pumpkinxd_ZitNetworkAutoConnector::http_get(const std::str
 
     auto res=http_send_request2(hostname.c_str(), content.c_str(), false);
     std::string respond=res;
-    std::free(res);
+    if (res) {
+        std::free(res);
+    }
     //
     return respond;
 }
@@ -88,6 +90,9 @@ Host: %s\r\n\
     const auto CONNECTION_TYPE = "Keep-Alive";
 
     char *ip = host_to_ip(hostname); //
+    if (!ip) {
+    return nullptr;
+    }
     int sockfd = http_create_socket(ip);
 
     char buffer[BUFFER_SIZE] = {0};

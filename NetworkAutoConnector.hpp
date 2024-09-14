@@ -12,6 +12,7 @@ class NetworkAutoConnector
     NetworkAutoConnector(const std::string &filename);
     void saveConfig2file(const std::string &filename);
     bool isOnline();
+    void updateOnlineStats();
     void updatePubkeyFromPortal();
     void fetchPortalUrlAndQuery();
 
@@ -24,6 +25,8 @@ class NetworkAutoConnector
 
     std::string userId;
     std::string EncryptedPWD;
+    bool online;
+    int zit_online;//0==not zit network; -1==zit network without login; 1==onlline; 2==unknown
 
     /***
      * seems they (zit) not changing their Network RSA key pair at all
